@@ -1,0 +1,31 @@
+@import "./variables.css";
+
+#main-nav-bar {
+    background: var(--COLOR-BACKGROUND-NAVBAR);
+    width: 100%;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+#main-nav-bar ul {
+    display: flex;
+    flex-direction: row;
+
+    list-style: none;
+    gap: 2rem;
+}
+
+header h1, p, a {
+    color: var(--COLOR-TEXT-NAVBAR);
+}
+
+header a {
+    text-decoration: none;
+}
+
+header a:hover {
+    text-decoration: none;
+}
