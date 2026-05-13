@@ -6,3 +6,51 @@
     padding: 0;
     box-sizing: 0;
 }
+
+body {
+    background: var(--COLOR-BACKGROUND);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main h1, main h3, main p, main a {
+    color: var(--COLOR-TEXT);
+    text-align: center;
+}
+
+#log-in-sign-up-div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    border: 2px solid var(--COLOR-ACCENT);
+    background-color: var(--COLOR-ACCENT);
+    color: var(--COLOR-TEXT-NAVBAR);
+    padding: 15px 40px;
+    border-radius: 40px;
+    transition: 0.25s ease;
+}
+
+
+button:hover {
+    cursor: pointer;
+    padding: 20px 45px;
+    background-color: #e8b51c;
+    font-size: 12pt;
+}
+
+#a-sign-up {
+    color: var(--COLOR-ACCENT);
+    padding: 10px 35px;
+    border: 2px solid var(--COLOR-ACCENT);
+    border-radius: 40px;
+}

@@ -13,6 +13,8 @@
 #main-nav-bar ul {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     list-style: none;
     gap: 2rem;
@@ -24,8 +26,9 @@ header h1, p, a {
 
 header a {
     text-decoration: none;
+    padding: 5px;
 }
 
 header a:hover {
-    text-decoration: none;
+    border-bottom: 2px solid var(--COLOR-TEXT-NAVBAR);
 }
