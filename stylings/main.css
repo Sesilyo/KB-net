@@ -4,20 +4,24 @@
 *, html, body {
     margin: 0;
     padding: 0;
-    box-sizing: 0;
+    box-sizing: border-box;
 }
 
 body {
     background: var(--COLOR-BACKGROUND);
+    display: flex;
+    flex-direction: column;
+    min-width: 100vh;
 }
 
 main {
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    flex-grow: 1;
+    min-height: calc(100vh - 80px);
+    width: 100%;
 }
 
 main h1, main h3, main p, main a {
@@ -25,10 +29,20 @@ main h1, main h3, main p, main a {
     text-align: center;
 }
 
+#welcome-texts {
+    padding: 30px;
+}
+
 #log-in-sign-up-div {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+#log-in-sign-up-div form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 button {
@@ -43,9 +57,10 @@ button {
 
 button:hover {
     cursor: pointer;
-    padding: 20px 45px;
+    color: var(--COLOR-TEXT);
     background-color: #e8b51c;
-    font-size: 12pt;
+    border:2px solid  #e8b51c;
+    transform: scale(1.1);
 }
 
 #a-sign-up {

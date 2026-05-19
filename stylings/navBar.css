@@ -5,6 +5,8 @@
     width: 100%;
     padding: 20px;
 
+    box-sizing: border-box;
+
     display: flex;
     flex-direction: row;
     gap: 2rem;
@@ -20,7 +22,9 @@
     gap: 2rem;
 }
 
-header h1, p, a {
+header h1,
+header p,
+header a {
     color: var(--COLOR-TEXT-NAVBAR);
 }
 
