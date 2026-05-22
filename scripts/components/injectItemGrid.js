@@ -9,7 +9,7 @@ function createItemCard(item) {
                     <p class="item-lender">${item.first_name} ${item.last_name}</p>
                     
                     <div class="item-footer">
-                        <span class="item-price">₱${parseFloat(item.price_per_hour).toFixed(2)} / hr</span>
+                        <span class="item-price">₱${parseFloat(item.price_pr_hr).toFixed(2)} / hr</span>
                         <span class="item-status ${item.item_status}">${item.item_status}</span>
                     </div>
                 </div>

@@ -6,7 +6,17 @@
 // IMPORT FOR COMPONENT LOGICS
 import { loadNavbar } from "./components/injectNavBar.js";
 import { injectItemGrid } from "./components/injectItemGrid.js";
+import { injectFilters } from "./components/injectFilters.js";
+
+const PATH = window.location.pathname;
+
 
 // FUNCTION CALLS
+// globally load navbar for all pages
 loadNavbar();
-injectItemGrid('#item-grid');
+
+if (PATH.includes('browse.html')) {
+    // only loads these JS injections inside browse.html
+    injectItemGrid('#item-grid');
+    injectFilters('#filter-container');
+}

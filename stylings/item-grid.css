@@ -1,0 +1,27 @@
+@import "./variables.css";
+
+#item-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    padding: 16px;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.item-card {
+    border:2px solid black;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}

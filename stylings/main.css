@@ -1,5 +1,5 @@
 @import "./variables.css";
-@import "./navBar.css";
+@import "./nav-bar.css";
 
 *, html, body {
     margin: 0;
@@ -14,14 +14,14 @@ body {
     min-width: 100vh;
 }
 
+
+/* mobile layout */
 main {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex-grow: 1;
-    min-height: calc(100vh - 80px);
     width: 100%;
+    padding: 16px;
+    gap: 16px;
 }
 
 main h1, main h3, main p, main a {
