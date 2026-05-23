@@ -1,0 +1,164 @@
+/* KB-Net | styles.css */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #fafafa;
+  color: #0a0a0a;
+  height: 100vh;
+  display: flex;
+}
+
+/* Layout */
+.page { display: flex; height: 100vh; width: 100%; }
+
+/* Brand Panel */
+.panel-brand {
+  width: 42%;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-logo { text-align: center; }
+
+.brand-logo h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: #f5f5f5;
+  letter-spacing: 0.12em;
+}
+
+.brand-logo p {
+  font-size: 0.7rem;
+  color: #aaa;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* Form Panel */
+.panel-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  overflow-y: auto;
+}
+
+/* Tab Bar */
+.tab-bar {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 360px;
+  background: #e8e8e8;
+  margin-bottom: 32px;
+  overflow: hidden;
+}
+
+.tab {
+  flex: 1;
+  padding: 11px 0;
+  background: transparent;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #aaa;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: color 0.2s;
+}
+
+.tab.active { color: #f5f5f5; }
+
+.tab-indicator {
+  position: absolute;
+  top: 0; left: 0;
+  width: 50%; height: 100%;
+  background: #0a0a0a;
+  transition: transform 0.25s ease;
+  z-index: 0;
+}
+
+/* Form */
+.form-card { width: 100%; max-width: 360px; }
+.form-card.hidden { display: none; }
+
+.form-card h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.field { margin-bottom: 16px; }
+
+.field-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.field-row .field { flex: 1; margin-bottom: 0; }
+
+.field input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1.5px solid #d4d4d4;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field input::placeholder { color: #aaa; }
+.field input:focus { border-bottom-color: #0a0a0a; }
+
+.forgot {
+  display: block;
+  text-align: right;
+  font-size: 0.73rem;
+  color: #aaa;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.forgot:hover { color: #0a0a0a; }
+
+.btn-row { display: flex; gap: 10px; margin-top: 4px; }
+
+.btn-signup, .btn-login, .btn-primary {
+  flex: 1;
+  padding: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  border: 1.5px solid #0a0a0a;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-signup, .btn-primary {
+  background: #0a0a0a;
+  color: #f5f5f5;
+}
+.btn-signup:hover, .btn-primary:hover { background: #333; border-color: #333; }
+
+.btn-login {
+  background: transparent;
+  color: #0a0a0a;
+}
+.btn-login:hover { background: #0a0a0a; color: #f5f5f5; }
+
+.btn-primary { width: 100%; border: none; flex: unset; }
+
+@media (max-width: 640px) {
+  .panel-brand { display: none; }
+  .panel-form { padding: 32px 24px; }
+}

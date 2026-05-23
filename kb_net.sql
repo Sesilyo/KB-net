@@ -61,7 +61,7 @@ CREATE TABLE `user` (
   `email`         varchar(100) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   PRIMARY KEY (`student_id`),
-  UNIQUE KEY `email`       (`email`),
+  UNIQUE KEY `email`               (`email`),
   UNIQUE KEY `idx_unique_lender`   (`lender_id`),
   UNIQUE KEY `idx_unique_borrower` (`borrower_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -83,13 +83,14 @@ INSERT INTO `user` (`student_id`, `lender_id`, `borrower_id`, `first_name`, `las
 --
 
 CREATE TABLE `item` (
-  `item_id`     int(11)       NOT NULL AUTO_INCREMENT,
-  `category_id` int(11)       NOT NULL,
-  `lender_id`   varchar(20)   NOT NULL,
-  `item_name`   varchar(100)  NOT NULL,
-  `item_status` enum('available','borrowed','unavailable') NOT NULL DEFAULT 'available',
-  `price_pr_hr` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `image_path`  varchar(500)  DEFAULT NULL,
+  `item_id`          int(11)       NOT NULL AUTO_INCREMENT,
+  `category_id`      int(11)       NOT NULL,
+  `lender_id`        varchar(20)   NOT NULL,
+  `item_name`        varchar(100)  NOT NULL,
+  `item_description` text          DEFAULT NULL,
+  `item_status`      enum('available','borrowed','unavailable') NOT NULL DEFAULT 'available',
+  `price_pr_hr`      decimal(10,2) NOT NULL DEFAULT 0.00,
+  `image_path`       varchar(500)  DEFAULT NULL,
   PRIMARY KEY (`item_id`),
   KEY `category_id` (`category_id`),
   KEY `lender_id`   (`lender_id`)
@@ -99,13 +100,13 @@ CREATE TABLE `item` (
 -- Dumping data for table `item`
 --
 
-INSERT INTO `item` (`category_id`, `lender_id`, `item_name`, `item_status`, `price_pr_hr`, `image_path`) VALUES
-(4, 'L-0001', 'Shinguard',       'available',  5.00, 'uploads/items/shinguard.jpg'),
-(4, 'L-0001', 'Boxing Gloves',   'borrowed',  10.00, 'uploads/items/boxing_gloves.jpg'),
-(4, 'L-0002', 'Mouthguard',      'available',  2.00, 'uploads/items/mouthguard.jpg'),
-(4, 'L-0002', 'Hand Wraps 3.5m', 'available',  2.00, 'uploads/items/hand_wraps.jpg'),
-(3, 'L-0003', 'Socks',           'available',  3.00, 'uploads/items/socks.jpg'),
-(2, 'L-0004', 'Muji Pen',        'borrowed',   1.50, 'uploads/items/muji_pen.jpg');
+INSERT INTO `item` (`category_id`, `lender_id`, `item_name`, `item_description`, `item_status`, `price_pr_hr`, `image_path`) VALUES
+(4, 'L-0001', 'Shinguard',       'Protective gear worn on the shins during sports.',     'available',  5.00, 'uploads/items/shinguard.jpg'),
+(4, 'L-0001', 'Boxing Gloves',   'Standard 12oz boxing gloves, good condition.',         'borrowed',  10.00, 'uploads/items/boxing_gloves.jpg'),
+(4, 'L-0002', 'Mouthguard',      'Single-layer mouthguard, boil-and-bite fit.',          'available',  2.00, 'uploads/items/mouthguard.jpg'),
+(4, 'L-0002', 'Hand Wraps 3.5m', 'Cotton hand wraps, 3.5 meters long.',                 'available',  2.00, 'uploads/items/hand_wraps.jpg'),
+(3, 'L-0003', 'Socks',           'White ankle-length cotton socks, size medium.',        'available',  3.00, 'uploads/items/socks.jpg'),
+(2, 'L-0004', 'Muji Pen',        'Black 0.5mm gel ink pen from Muji.',                  'borrowed',   1.50, 'uploads/items/muji_pen.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,13 +131,15 @@ CREATE TABLE `transaction` (
   KEY `borrower_id` (`borrower_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO transaction (transaction_id, item_id, lender_id, borrower_id, start_date, end_date, returned_date, notes, is_returned, penalty_fee) VALUES
-('T-0001', 2, 'L-0001', 'B-0002', '2024-01-10 08:00:00', '2024-01-12 08:00:00', '2024-01-12 07:45:00', 'Handle with care.', 1, 0.00),
-('T-0002', 6, 'L-0004', 'B-0001', '2024-01-15 09:00:00', '2024-01-15 18:00:00', NULL, 'Return before 6PM.', 0, 0.00),
+--
+-- Dumping data for table `transaction`
+--
+
+INSERT INTO `transaction` (`transaction_id`, `item_id`, `lender_id`, `borrower_id`, `start_date`, `end_date`, `returned_date`, `notes`, `is_returned`, `penalty_fee`) VALUES
+('T-0001', 2, 'L-0001', 'B-0002', '2024-01-10 08:00:00', '2024-01-12 08:00:00', '2024-01-12 07:45:00', 'Handle with care.',      1, 0.00),
+('T-0002', 6, 'L-0004', 'B-0001', '2024-01-15 09:00:00', '2024-01-15 18:00:00', NULL,                  'Return before 6PM.',     0, 0.00),
 ('T-0003', 1, 'L-0001', 'B-0003', '2024-01-20 10:00:00', '2024-01-22 10:00:00', '2024-01-23 11:00:00', 'Returned one day late.', 1, 0.00),
-('T-0004', 3, 'L-0002', 'B-0004', '2024-02-01 08:00:00', '2024-02-03 08:00:00', '2024-02-03 08:00:00', NULL, 1, 0.00);
-
-
+('T-0004', 3, 'L-0002', 'B-0004', '2024-02-01 08:00:00', '2024-02-03 08:00:00', '2024-02-03 08:00:00', NULL,                     1, 0.00);
 
 -- --------------------------------------------------------
 
@@ -186,15 +189,14 @@ BEGIN
   SET NEW.penalty_fee = 0.00;
 END$$
 
--- Trigger 2: Calculate penalty_fee safely
--- FIXED: Closed the incomplete block expressions securely
+-- Trigger 2: Calculate penalty_fee on return
 CREATE TRIGGER `before_update_transaction_returned`
 BEFORE UPDATE ON `transaction`
 FOR EACH ROW
 BEGIN
   IF NEW.is_returned = 1 AND OLD.is_returned = 0 THEN
-    SET NEW.penalty_fee = CASE 
-      WHEN NEW.returned_date > NEW.end_date THEN 
+    SET NEW.penalty_fee = CASE
+      WHEN NEW.returned_date > NEW.end_date THEN
         DATEDIFF(NEW.returned_date, NEW.end_date) * (SELECT price_pr_hr FROM item WHERE item_id = NEW.item_id)
       ELSE 0.00
     END;
