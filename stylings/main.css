@@ -26,7 +26,6 @@ main {
 
 main h1, main h3, main p, main a {
     color: var(--COLOR-TEXT);
-    text-align: center;
 }
 
 #welcome-texts {
