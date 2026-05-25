@@ -1,8 +1,10 @@
+/* FILENAME: item-grid.css */
+
 @import "./variables.css";
 
 #item-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 300fr));
     gap: 24px;
     padding: 16px;
 
@@ -12,21 +14,56 @@
 
 .item-card {
     width: 100%;
-    aspect-ratio: 1 / 1;    /* forces height to match width */
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     overflow: hidden;
 
     border-radius: 16px;
     padding: 16px;
+    box-shadow: 0px 10px 10px 5px var(--COLOR-TEXT);
+}
+
+.item-card img {
+    width: 250px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+
+    display: block;
+    margin: 0 auto;
+
+    background-color: burlywood;
+}
+
+.item-info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0px 10px 10px 5px var(--COLOR-TEXT);
+    flex-grow: 1;
+    min-height: 0;
+}
+
+.item-name {
+    margin: 0;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-category {
+    font-size: 0.85rem;
+    opacity: 0.7;
 }
 
 .item-body {
     display: flex;
     flex-direction: row;
     padding-top: 15px;
+    overflow: hidden;
 }
 
 .item-body > div {
@@ -45,9 +82,17 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
+    margin-top: auto;
 }
 
 .item-price {
     font-weight: bold;
+}
+
+.item-lender {
+    margin: 0;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipses;
 }
