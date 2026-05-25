@@ -21,7 +21,7 @@ export async function injectFilters() {
     const availabilityContainer = document.querySelector('#availability-filter-container');
     availabilityContainer.innerHTML = availabilities.map ( avail => `
             <label>
-                <input type="checkbox" value="${avail.item_status} class="filter-availability">
+                <input type="checkbox" value="${avail.item_status}" class="filter-availability">
                 ${avail.item_status}
             </label>
         `).join('');

@@ -1,31 +1,39 @@
 // FILENAME: injectItemGrid.js
 
 function createItemCard(item) {
-        return `
-            <div class="item-card" data-id="${item.item_id}">
-                <span class="item-status ${item.item_status}">${item.item_status}</span>
-                <img alt="item img here">
-                <div class="item-info">
-                    <div class="item-body">
-                        <div class="item-labels">
-                            <p class="item-name">${item.item_name}</p>
-                            <span class="item-category">${item.category_name}</span>
-                        </div>
+    const imageSrc = item.image_path
+        ? `../${item.image_path}`
+        : '../assets/placeholder.png';
 
-                        <span class="item-price">₱${parseFloat(item.price_pr_hr).toFixed(2)} / hr</span>
+    return `
+        <div class="item-card" data-id="${item.item_id}">
+            <span class="item-status ${item.item_status}">${item.item_status}</span>
+            <img src="${imageSrc}" alt="${item.item_name}" onerror="this.style.display='none'">
+            <div class="item-info">
+                <div class="item-body">
+                    <div class="item-labels">
+                        <p class="item-name">${item.item_name}</p>
+                        <span class="item-category">${item.category_name}</span>
                     </div>
-                    
-                    <div class="item-footer">
-                        <p class="item-lender">${item.first_name} ${item.last_name}</p>
-                        <button class="borrow-btn">Borrow</button>
-                    </div>
+
+                    <span class="item-price">₱${parseFloat(item.price_pr_hr).toFixed(2)} / hr</span>
+                </div>
+                
+                <div class="item-footer">
+                    <p class="item-lender">${item.first_name} ${item.last_name}</p>
+                    <button class="borrow-btn">Borrow</button>
                 </div>
             </div>
-        `;
+        </div>
+    `;
 }
 
-export async function injectItemGrid(containerId) {
-    const res = await fetch('../api/getItems.php');
+export async function injectItemGrid(containerId, categories = [], statuses = []) {
+    const params = new URLSearchParams();
+    if (categories.length) params.append('categories', categories.join(','));
+    if (statuses.length) params.append('statuses', statuses.join(','));
+
+    const res = await fetch(`../api/getItems.php?${params}`);
     const items = await res.json();
 
     const container = document.querySelector(containerId);
