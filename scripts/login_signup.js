@@ -51,7 +51,19 @@ async function handleSignup() {
 
 // ── Log In ───────────────────────────────────────────────────────────────────
 async function handleLogin() {
-  // TODO: implement login endpoint
+  const body = new FormData();
+  body.append('email',    document.getElementById('login-email').value);
+  body.append('password', document.getElementById('login-password').value);
+
+  const res  = await fetch('../api/login.php', { method: 'POST', body });
+  const data = await res.json();
+
+  if (data.success) {
+    window.location.href = 'browse.html';
+    console.log(window.location.href);
+  } else {
+    document.getElementById('login-msg').textContent = data.message || 'Invalid email or password.';
+  }
 }
 
 // ── Event Listeners ──────────────────────────────────────────────────────────
