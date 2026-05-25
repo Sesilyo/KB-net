@@ -1,38 +1,67 @@
+/* FILENAME: browse.css */
+
 @import "./variables.css";
 @import "./item-grid.css";
 
 /* main tag for browse.html */
 #browse-layout {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: flex-start;
     width: 100%;
-    padding: 16px;
-    gap: 16px;
+    min-height: 100vh;
+    box-sizing: border-box;
 }
 
 
 #filter-sidebar {
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    background: wheat;
     width: 100%;
     border: 2px solid black;
-    padding: 16px;
-    flex-grow: 1;
-    height: 100%;
+    padding: 8px 16px;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+.filter-containers {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    padding: 5px 10px;
+
+    border-bottom: 2px solid var(--TEXT-COLOR);
+    margin-bottom: 16px;
 }
 
 
 /* desktop layout */
 @media (min-width: 768px) {
     #browse-layout {
-        /* FIX 1: Use grid instead of flex row */
         display: grid;
-        /* FIX 2: Explicitly lock the sidebar at 250px and give the item-grid the rest */
         grid-template-columns: 250px 1fr;
         align-items: start;
         gap: 24px;
         padding: 24px;
     }
 
+    .filter-containers {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .filter-header {
+        margin-top: 16px;
+    }
+
     #filter-sidebar {
+        width: auto;
+        display: flex;
+        flex-direction: column;
         position: sticky;
         top: 24px;
     }
