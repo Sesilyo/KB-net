@@ -29,40 +29,76 @@ function switchTab(tab) {
 
 // ── Sign Up ──────────────────────────────────────────────────────────────────
 async function handleSignup() {
+  const student_id = document.getElementById('signup-sid').value.trim();
+  const first_name = document.getElementById('signup-first').value.trim();
+  const last_name  = document.getElementById('signup-last').value.trim();
+  const email      = document.getElementById('signup-email').value.trim();
+  const password   = document.getElementById('signup-password').value.trim();
+  const msg        = document.getElementById('signup-msg');
+
+  // ── Validation ───────────────────────────────────────────────────────────────
+  if (!first_name || !last_name)   { msg.textContent = 'First and last name are required.'; return; }
+  if (!student_id)                 { msg.textContent = 'Student ID is required.'; return; }
+  if (!email)                      { msg.textContent = 'Email is required.'; return; }
+  if (!/\S+@\S+\.\S+/.test(email)) { msg.textContent = 'Please enter a valid email.'; return; }
+  if (!password)                   { msg.textContent = 'Password is required.'; return; }
+  if (password.length < 6)         { msg.textContent = 'Password must be at least 6 characters.'; return; }
+
   const body = new FormData();
-  body.append('student_id', document.getElementById('signup-sid').value);
-  body.append('first_name', document.getElementById('signup-first').value);
-  body.append('last_name',  document.getElementById('signup-last').value);
-  body.append('email',      document.getElementById('signup-email').value);
-  body.append('password',   document.getElementById('signup-password').value);
+  body.append('student_id', student_id);
+  body.append('first_name', first_name);
+  body.append('last_name',  last_name);
+  body.append('email',      email);
+  body.append('password',   password);
 
-  const res  = await fetch('../api/adduser.php', { method: 'POST', body });
-  const data = await res.json();
-  console.log(data);
+  try {
+    const res      = await fetch('../api/adduser.php', { method: 'POST', body });
+    const rawText  = await res.text();      
+    console.log('Signup raw response:', rawText);
+    const data     = JSON.parse(rawText);   
 
-  if (data.success) {
-    document.getElementById('signup-msg').textContent = 'Account created successfully!';
-    ['signup-sid', 'signup-first', 'signup-last', 'signup-email', 'signup-password']
-      .forEach(id => document.getElementById(id).value = '');
-  } else {
-    document.getElementById('signup-msg').textContent = data.message;
+    if (data.success) {
+      msg.textContent = 'Account created successfully!';
+      ['signup-sid', 'signup-first', 'signup-last', 'signup-email', 'signup-password']
+        .forEach(id => document.getElementById(id).value = '');
+    } else {
+      msg.textContent = data.message;
+    }
+  } catch (err) {
+    console.error('Signup error:', err);
+    msg.textContent = 'Something went wrong. Check the console.';
   }
 }
 
 // ── Log In ───────────────────────────────────────────────────────────────────
 async function handleLogin() {
+  const email    = document.getElementById('login-email').value.trim();
+  const password = document.getElementById('login-password').value.trim();
+  const msg      = document.getElementById('login-msg');
+
+  // ── Validation ───────────────────────────────────────────────────────────────
+  if (!email)                      { msg.textContent = 'Email is required.'; return; }
+  if (!/\S+@\S+\.\S+/.test(email)) { msg.textContent = 'Please enter a valid email.'; return; }
+  if (!password)                   { msg.textContent = 'Password is required.'; return; }
+
   const body = new FormData();
-  body.append('email',    document.getElementById('login-email').value);
-  body.append('password', document.getElementById('login-password').value);
+  body.append('email',    email);
+  body.append('password', password);
 
-  const res  = await fetch('../api/login.php', { method: 'POST', body });
-  const data = await res.json();
+  try {
+    const res     = await fetch('../api/login.php', { method: 'POST', body });
+    const rawText = await res.text();
+    console.log('Login raw response:', rawText);
+    const data    = JSON.parse(rawText);
 
-  if (data.success) {
-    window.location.href = 'browse.html';
-    console.log(window.location.href);
-  } else {
-    document.getElementById('login-msg').textContent = data.message || 'Invalid email or password.';
+    if (data.success) {
+      window.location.href = 'browse.html';
+    } else {
+      msg.textContent = data.message || 'Invalid email or password.';
+    }
+  } catch (err) {
+    console.error('Login error:', err);
+    msg.textContent = 'Something went wrong. Check the console.';
   }
 }
 
