@@ -3,7 +3,7 @@
 #item-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
+    gap: 24px;
     padding: 16px;
 
     width: 100%;
@@ -11,11 +11,16 @@
 }
 
 .item-card {
-    border:2px solid black;
+    width: 100%;
+    aspect-ratio: 1 / 1;    /* forces height to match width */
+    overflow: hidden;
+
+    border-radius: 16px;
     padding: 16px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    box-shadow: 0px 10px 10px 5px var(--COLOR-TEXT);
 }
 
 .item-body {

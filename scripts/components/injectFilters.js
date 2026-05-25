@@ -1,8 +1,14 @@
 // FILENAME: injectFilters.js
 
 export async function injectFilters() {
-    const res = await fetch('../api/getCategories.php');
-    const categories = await res.json();
+
+    // fetching category IDs
+    const catRes = await fetch('../api/getCategories.php');
+    const categories = await catRes.json();
+
+    // fetching distinct availability labels
+    const availRes = await fetch('../api/getAvailabilities.php');
+    const availabilities = await availRes.json();
 
     const filterContainer = document.querySelector('#filter-container');
     filterContainer.innerHTML = categories.map( cat => `
@@ -11,4 +17,13 @@ export async function injectFilters() {
                 ${cat.category_name}
             </label>
         `).join('');
+
+    const availabilityContainer = document.querySelector('#availability-filter-container');
+    availabilityContainer.innerHTML = availabilities.map ( avail => `
+            <label>
+                <input type="checkbox" value="${avail.item_status} class="filter-availability">
+                ${avail.item_status}
+            </label>
+        `).join('');
+
 }
