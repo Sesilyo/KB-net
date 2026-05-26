@@ -1,14 +1,14 @@
 // FILENAME: injectItemGrid.js
 
 function createItemCard(item) {
-    const imageSrc = item.image_path
-        ? `../${item.image_path}`
-        : '../assets/placeholder.png';
+    const imageBlock = item.image_path
+        ? `<img class="item-img" src="../${item.image_path}" alt="${item.item_name}" onerror="this.replaceWith(Object.assign(document.createElement('div'), {className:'item-img item-img-placeholder'}))">`
+        : `<div class="item-img item-img-placeholder"></div>`;
 
     return `
         <div class="item-card" data-id="${item.item_id}">
-            <span class="item-status ${item.item_status}">${item.item_status}</span>
-            <img src="${imageSrc}" alt="${item.item_name}" onerror="this.style.display='none'">
+            <span class="item-status ${item.item_status.toLowerCase()}">${item.item_status}</span>
+            ${imageBlock}
             <div class="item-info">
                 <div class="item-body">
                     <div class="item-labels">

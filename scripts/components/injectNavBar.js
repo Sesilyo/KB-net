@@ -5,9 +5,10 @@ export async function loadNavbar() {
         <nav id="main-nav-bar">
             <h1>KB-Net</h1>
             <ul>
-                <li><a href="../index.html">Home</a></li>
-                <li><a href="../pages/map.html">Map</a></li>
-                <li><a href="../pages/about.html">About</a></li>
+                <li><a href="../pages/browse.html">Browse</a></li>
+                <li><a href="../pages/transactions.html">Transactions</a></li>
+                <li><a href="../pages/my_items.html">My Items</a></li>
+                <li><a href="../pages/profile.html">Profile</a></li>
             </ul>
         </nav>
     `;

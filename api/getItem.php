@@ -6,7 +6,7 @@
     require_once __DIR__ . '/../DBConnector.php';
     header('Content-Type: application/json');
 
-    $item_id = $_GET['id'] ?? null;
+    $item_id = $_GET['item_id'] ?? null;
 
     // guard block
     if (!$item_id) {
@@ -27,7 +27,7 @@
     );
     $statement->bind_param('i', $item_id);  // binds item_id as integer in the query
     $statement->execute();
-    $result     = $stmt->get_result();
+    $result     = $statement->get_result();
     $row        = $result->fetch_assoc();   // only expects one row
 
     // guard block when item doesn't exist in DB

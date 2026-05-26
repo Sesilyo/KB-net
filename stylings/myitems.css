@@ -1,138 +1,99 @@
-/* FILENAME: stylings/my-items.css */
+/* FILENAME: stylings/myitems.css */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import "./variables.css";
+@import "./main.css";
+@import "./item-grid.css";
+@import "./sidebar.css";
+@import "./addItemPopup.css";
 
-body {
-    font-family: sans-serif;
-    background: #f4f4f4;
-    color: #111;
-}
-
-/* ── Navbar ── */
-#main-nav-bar {
-    background: #111;
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-#main-nav-bar h1 {
-    color: #fff;
-    font-size: 1.6rem;
-    font-weight: 700;
-}
-
-#main-nav-bar ul {
-    display: flex;
-    list-style: none;
-    gap: 1.5rem;
-    margin-left: auto;
-}
-
-#main-nav-bar a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
-#main-nav-bar a:hover,
-#main-nav-bar a.active {
-    text-decoration: underline;
-}
-
-/* ── Layout ── */
+/* ── Page Layout ── */
 #browse-layout {
     display: flex;
     gap: 1.5rem;
-    max-width: 1200px;
-    margin: 1.5rem auto;
+    width: 100%;
+    margin: 1.5rem 0;
     padding: 0 1.5rem;
     align-items: flex-start;
+    box-sizing: border-box;
 }
 
-/* ── Sidebar ── */
-#filter-sidebar {
-    width: 180px;
-    flex-shrink: 0;
-    background: #fff;
-    border-radius: 6px;
-    padding: 1rem;
-    border: 1px solid #ddd;
-}
-
-.filter-header {
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    margin-top: 1rem;
-}
-
-.filter-header:first-child {
-    margin-top: 0;
-}
-
-.filter-containers {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-}
-
-.filter-containers label {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.88rem;
-    cursor: pointer;
-}
-
-/* ── Item Grid ── */
+/* ── Item Grid (2-col horizontal cards) ── */
 #item-grid {
     flex: 1;
+    min-width: 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
-/* ── Item Card ── */
+/* ── Horizontal card layout ── */
 .item-card {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    display: flex;
+    flex-direction: row;
+    align-items: stretch;
     gap: 0.75rem;
     padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 12px rgba(60, 36, 21, 0.2);
     position: relative;
+    background: #fff;
 }
 
+.item-img,
 .item-card img {
-    width: 100px;
-    height: 100px;
+    width: 150px !important;
+    height: 150px !important;
     min-width: 100px;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 4px;
     object-fit: cover;
-    border-radius: 4px;
-    background: #ccc;
+    margin: 0 !important;
+    background-color: #e8d5b7;
+    flex-shrink: 0;
 }
 
-/* placeholder when no image */
-.item-card img[style*="display:none"] + .img-placeholder,
-.img-placeholder {
-    width: 100px;
-    height: 100px;
+.item-img-placeholder {
+    width: 150px !important;
+    height: 150px !important;
     min-width: 100px;
-    background: #ccc;
+    aspect-ratio: 1 / 1 !important;
     border-radius: 4px;
+    margin: 0 !important;
+    background-color: #e8d5b7;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 36px 36px;
+    flex-shrink: 0;
 }
 
+.item-info {
+    flex: 1;
+    min-width: 0;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-body {
+    padding-top: 0 !important;
+    align-items: flex-start;
+    flex: 1;
+    overflow: hidden;
+}
+
+.item-footer {
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* ── Status badge ── */
 .item-status {
     position: absolute;
     top: 6px;
     left: 6px;
-    font-size: 0.65rem;
+    font-size: 0.85rem;
     font-weight: 600;
     padding: 2px 8px;
     border-radius: 20px;
@@ -144,37 +105,7 @@ body {
 .item-status.borrowed    { background: #d97706; }
 .item-status.unavailable { background: #dc2626; }
 
-.item-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.item-body {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 0.5rem;
-}
-
-.item-name {
-    font-weight: 700;
-    font-size: 0.95rem;
-}
-
-.item-category {
-    font-size: 0.8rem;
-    color: #666;
-    margin-left: 0.25rem;
-}
-
-.item-price {
-    font-weight: 700;
-    font-size: 0.85rem;
-    white-space: nowrap;
-}
-
+/* ── Description ── */
 .item-desc {
     font-size: 0.78rem;
     color: #555;
@@ -186,44 +117,23 @@ body {
     overflow: hidden;
 }
 
-.item-footer {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 0.5rem;
-}
-
+/* ── Edit button ── */
 .edit-btn {
     background: #111;
     color: #fff;
-    border: none;
+    border: none !important;
     padding: 0.3rem 1rem;
     font-size: 0.8rem;
-    border-radius: 4px;
+    border-radius: 4px !important;
     cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .edit-btn:hover {
-    background: #1a7a3c;
-}
-
-/* ── Add Item Button ── */
-#add-item-btn {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: #111;
+    background: #2b1b03;
+    transform: none !important;
     color: #fff;
-    border: none;
-    padding: 0.7rem 1.3rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
-#add-item-btn:hover {
-    background: #1a7a3c;
 }
 
 /* ── States ── */
@@ -244,10 +154,6 @@ body {
 @media (max-width: 700px) {
     #browse-layout {
         flex-direction: column;
-    }
-
-    #filter-sidebar {
-        width: 100%;
     }
 
     #item-grid {

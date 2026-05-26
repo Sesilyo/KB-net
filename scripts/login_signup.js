@@ -1,5 +1,3 @@
-// FILENAME: scripts/login_signup.js
-
 // ── Tab switcher ─────────────────────────────────────────────────────────────
 function switchTab(tab) {
   const loginForm  = document.getElementById('form-login');
