@@ -10,7 +10,7 @@ $email    = trim($_POST['email']    ?? '');
 $password = trim($_POST['password'] ?? '');
 
 // ── Query User ───────────────────────────────────────────────────────────────
-$stmt = $conn->prepare('SELECT student_id, first_name, last_name, email, password_hash FROM `user` WHERE email = ?');
+$stmt = $conn->prepare('SELECT student_id, lender_id, borrower_id, first_name, last_name, email, password_hash FROM `user` WHERE email = ?');
 $stmt->bind_param('s', $email);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -29,10 +29,12 @@ if (!password_verify($password, $user['password_hash'])) {
 }
 
 // ── Set Session & Respond ────────────────────────────────────────────────────
-$_SESSION['student_id'] = $user['student_id'];
-$_SESSION['first_name'] = $user['first_name'];
-$_SESSION['last_name']  = $user['last_name'];
-$_SESSION['email']      = $user['email'];
+$_SESSION['student_id']  = $user['student_id'];
+$_SESSION['lender_id']   = $user['lender_id'];
+$_SESSION['borrower_id'] = $user['borrower_id'];
+$_SESSION['first_name']  = $user['first_name'];
+$_SESSION['last_name']   = $user['last_name'];
+$_SESSION['email']       = $user['email'];
 
 echo json_encode([
     'success' => true,

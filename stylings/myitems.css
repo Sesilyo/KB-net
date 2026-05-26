@@ -1,0 +1,256 @@
+/* FILENAME: stylings/my-items.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: #f4f4f4;
+    color: #111;
+}
+
+/* ── Navbar ── */
+#main-nav-bar {
+    background: #111;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+#main-nav-bar h1 {
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+#main-nav-bar ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    margin-left: auto;
+}
+
+#main-nav-bar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+#main-nav-bar a:hover,
+#main-nav-bar a.active {
+    text-decoration: underline;
+}
+
+/* ── Layout ── */
+#browse-layout {
+    display: flex;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1.5rem;
+    align-items: flex-start;
+}
+
+/* ── Sidebar ── */
+#filter-sidebar {
+    width: 180px;
+    flex-shrink: 0;
+    background: #fff;
+    border-radius: 6px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+}
+
+.filter-header {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    margin-top: 1rem;
+}
+
+.filter-header:first-child {
+    margin-top: 0;
+}
+
+.filter-containers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.filter-containers label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    cursor: pointer;
+}
+
+/* ── Item Grid ── */
+#item-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* ── Item Card ── */
+.item-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    position: relative;
+}
+
+.item-card img {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #ccc;
+}
+
+/* placeholder when no image */
+.item-card img[style*="display:none"] + .img-placeholder,
+.img-placeholder {
+    width: 100px;
+    height: 100px;
+    min-width: 100px;
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.item-status {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    color: #fff;
+    background: #1a7a3c;
+    text-transform: capitalize;
+}
+
+.item-status.borrowed    { background: #d97706; }
+.item-status.unavailable { background: #dc2626; }
+
+.item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.item-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.item-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.item-category {
+    font-size: 0.8rem;
+    color: #666;
+    margin-left: 0.25rem;
+}
+
+.item-price {
+    font-weight: 700;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+.item-desc {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.4;
+    margin-top: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.item-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+}
+
+.edit-btn {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background: #1a7a3c;
+}
+
+/* ── Add Item Button ── */
+#add-item-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#add-item-btn:hover {
+    background: #1a7a3c;
+}
+
+/* ── States ── */
+.loading-msg {
+    color: #888;
+    font-size: 0.9rem;
+    grid-column: 1 / -1;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    color: #888;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+    #browse-layout {
+        flex-direction: column;
+    }
+
+    #filter-sidebar {
+        width: 100%;
+    }
+
+    #item-grid {
+        grid-template-columns: 1fr;
+    }
+}

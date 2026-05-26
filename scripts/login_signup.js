@@ -92,7 +92,7 @@ async function handleLogin() {
     const data    = JSON.parse(rawText);
 
     if (data.success) {
-      window.location.href = 'browse.html';
+      window.location.href = 'my_items.html';
     } else {
       msg.textContent = data.message || 'Invalid email or password.';
     }
