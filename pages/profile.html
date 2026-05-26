@@ -1,0 +1,193 @@
+<!-- FILENAME: pages/profile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="../stylings/main.css">
+        <link rel="stylesheet" href="../stylings/profile.css">
+
+        <title>KB-Net | Profile</title>
+    </head>
+    <body>
+        <header>
+            <!-- navbar injected by injectNavBar.js -->
+        </header>
+
+        <main id="profile-layout">
+            <aside id="profile-sidebar">
+                <nav class="profile-menu">
+                    <a href="#profile-section" class="menu-item active">
+                        <span class="menu-icon">👤</span>
+                        Profile
+                    </a>
+                    <a href="#borrowed-section" class="menu-item">
+                        <span class="menu-icon">📥</span>
+                        My Borrowed Items
+                    </a>
+                    <a href="#lent-section" class="menu-item">
+                        <span class="menu-icon">📤</span>
+                        My Lent Items
+                    </a>
+                    <a href="#transaction-section" class="menu-item">
+                        <span class="menu-icon">💳</span>
+                        Transaction History
+                    </a>
+                    <a href="#notifications-section" class="menu-item">
+                        <span class="menu-icon">🔔</span>
+                        Notifications
+                    </a>
+                    <a href="#settings-section" class="menu-item">
+                        <span class="menu-icon">⚙️</span>
+                        Settings
+                    </a>
+                    <hr class="menu-divider">
+                    <button id="logout-btn" class="menu-item logout-item">
+                        <span class="menu-icon">🚪</span>
+                        Logout
+                    </button>
+                </nav>
+            </aside>
+
+            <div id="profile-content">
+                <!-- Profile Section -->
+                <section id="profile-section" class="profile-section">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2>My Profile</h2>
+                        </div>
+
+                        <div class="profile-body">
+                            <!-- Profile Photo Section -->
+                            <div class="profile-photo-section">
+                                <div class="profile-photo-container">
+                                    <img id="profile-photo" src="https://via.placeholder.com/150" alt="Profile Photo" class="profile-photo">
+                                    <button id="upload-photo-btn" class="upload-photo-btn">Change Photo</button>
+                                    <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                                </div>
+                            </div>
+
+                            <!-- User Information -->
+                            <div class="profile-info-section">
+                                <div class="info-group">
+                                    <label>Username</label>
+                                    <p class="info-value" id="username-display">john_doe</p>
+                                </div>
+
+                                <div class="info-group">
+                                    <label>Full Name</label>
+                                    <div class="editable-field">
+                                        <input type="text" id="fullname-input" class="editable-input" value="John Doe" disabled>
+                                        <button class="edit-btn" data-field="fullname">Edit</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-group">
+                                    <label>Student ID</label>
+                                    <div class="editable-field">
+                                        <input type="text" id="studentid-input" class="editable-input" value="2024-00123" disabled>
+                                        <button class="edit-btn" data-field="studentid">Edit</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-group">
+                                    <label>Email Address</label>
+                                    <div class="editable-field">
+                                        <input type="email" id="email-input" class="editable-input" value="john.doe@student.edu" disabled>
+                                        <button class="edit-btn" data-field="email">Edit</button>
+                                    </div>
+                                </div>
+
+                                <div class="info-group">
+                                    <label>Lender ID</label>
+                                    <p class="info-value" id="lenderid-display">LDR-2024-0001</p>
+                                </div>
+
+                                <div class="info-group">
+                                    <label>Borrower ID</label>
+                                    <p class="info-value" id="borrowerid-display">BRW-2024-0001</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-footer">
+                            <button id="save-changes-btn" class="save-btn" style="display: none;">Save Changes</button>
+                            <button id="cancel-changes-btn" class="cancel-btn" style="display: none;">Cancel</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Placeholder Sections -->
+                <section id="borrowed-section" class="profile-section" style="display: none;">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2>My Borrowed Items</h2>
+                        </div>
+                        <div class="profile-body">
+                            <p>Your borrowed items will appear here.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="lent-section" class="profile-section" style="display: none;">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2>My Lent Items</h2>
+                        </div>
+                        <div class="profile-body">
+                            <p>Your lent items will appear here.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="transaction-section" class="profile-section" style="display: none;">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2>Transaction History</h2>
+                        </div>
+                        <div class="profile-body">
+                            <p>Your transaction history will appear here.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="notifications-section" class="profile-section" style="display: none;">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2>Notifications</h2>
+                        </div>
+                        <div class="profile-body">
+                            <p>Your notifications will appear here.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="settings-section" class="profile-section" style="display: none;">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <h2>Account Settings</h2>
+                        </div>
+                        <div class="profile-body">
+                            <div class="settings-group">
+                                <h3>Security</h3>
+                                <button class="settings-btn">Change Password</button>
+                                <button class="settings-btn">Two-Factor Authentication</button>
+                            </div>
+                            <div class="settings-group">
+                                <h3>Privacy</h3>
+                                <button class="settings-btn">Privacy Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+        </footer>
+
+        <script src="../scripts/main.js" type="module"></script>
+    </body>
+</html>

@@ -8,6 +8,7 @@ import { injectFilters }  from "./components/injectFilters.js";
 import { injectMyItems }  from "./components/injectMyItems.js";
 import { initAddItem }    from "./components/addItem.js";
 import { initEditItem }   from "./components/edittem.js";
+import { initProfile }    from "./components/profileHandler.js";
 
 const PATH = window.location.pathname;
 
@@ -54,4 +55,9 @@ if (PATH.includes('my_items.html')) {
         if (!itemId) { console.error('edit-btn is missing data-id attribute'); return; }
         document.dispatchEvent(new CustomEvent('open-edit-modal', { detail: { itemId } }));
     });
+}
+
+// ── Profile page ────────────────────────────────────
+if (PATH.includes('profile.html')) {
+    initProfile();
 }
