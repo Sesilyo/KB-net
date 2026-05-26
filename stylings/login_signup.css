@@ -5,7 +5,7 @@
 body {
   font-family: 'DM Sans', sans-serif;
   background: #fafafa;
-  color: #0a0a0a;
+  color: #3c2415;
   height: 100vh;
   display: flex;
 }
@@ -16,7 +16,7 @@ body {
 /* Brand Panel */
 .panel-brand {
   width: 42%;
-  background: #0a0a0a;
+  background: #280202;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,6 +49,7 @@ body {
   justify-content: center;
   padding: 48px;
   overflow-y: auto;
+  background: #fffbf6;
 }
 
 /* Tab Bar */
@@ -57,7 +58,7 @@ body {
   display: flex;
   width: 100%;
   max-width: 360px;
-  background: #e8e8e8;
+  background: #ffffff;
   margin-bottom: 32px;
   overflow: hidden;
 }
@@ -72,7 +73,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #aaa;
+  color: #280202;
   cursor: pointer;
   position: relative;
   z-index: 1;
@@ -85,7 +86,7 @@ body {
   position: absolute;
   top: 0; left: 0;
   width: 50%; height: 100%;
-  background: #0a0a0a;
+  background: #3c2415;
   transition: transform 0.25s ease;
   z-index: 0;
 }
@@ -128,7 +129,7 @@ body {
   text-decoration: none;
   margin-bottom: 20px;
 }
-.forgot:hover { color: #0a0a0a; }
+.forgot:hover { color: #3c2415; }
 
 .btn-row { display: flex; gap: 10px; margin-top: 4px; }
 
@@ -140,21 +141,21 @@ body {
   font-weight: 600;
   letter-spacing: 0.04em;
   cursor: pointer;
-  border: 1.5px solid #0a0a0a;
+  border: 1.5px solid #3c2415;
   transition: background 0.2s, color 0.2s;
 }
 
 .btn-signup, .btn-primary {
-  background: #0a0a0a;
+  background: #3c2415;
   color: #f5f5f5;
 }
-.btn-signup:hover, .btn-primary:hover { background: #333; border-color: #333; }
+.btn-signup:hover, .btn-primary:hover { background: #3c2415; border-color: #3c2415; }
 
 .btn-login {
   background: transparent;
-  color: #0a0a0a;
+  color: #3c2415;
 }
-.btn-login:hover { background: #0a0a0a; color: #f5f5f5; }
+.btn-login:hover { background: #3c2415; color: #f5f5f5; }
 
 .btn-primary { width: 100%; border: none; flex: unset; }
 
@@ -172,7 +173,7 @@ body {
   font-family: 'DM Sans', sans-serif;
   font-size: inherit;
   font-weight: 600;
-  color: #0a0a0a;
+  color: #3c2415;
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;

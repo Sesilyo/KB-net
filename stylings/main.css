@@ -61,8 +61,6 @@ button {
 button:hover {
     cursor: pointer;
     color: var(--COLOR-TEXT);
-    background-color: #e8b51c;
-    border:2px solid  #e8b51c;
     transform: scale(1.1);
 }
 

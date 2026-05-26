@@ -41,7 +41,7 @@
     aspect-ratio: 1 / 1;
     border-radius: 8px;
     margin: 0 0 12px 0;
-    background-color: #e8d5b7;
+    background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 56px 56px;
@@ -127,7 +127,7 @@
 
 /* ── Borrow button ── */
 .borrow-btn {
-    background: #111;
+    background: #3c2415;
     color: #fff;
     border: none;
     padding: 0.25rem 0.75rem;

@@ -6,7 +6,7 @@ function createMyItemCard(item) {
         : `<div class="item-img item-img-placeholder"></div>`;
 
     return `
-        <div class="item-card" data-id="${item.item_id}">
+        <div class="item-card" data-id="${item.item_id}" data-item-id="${item.item_id}">
             <span class="item-status ${item.item_status.toLowerCase()}">${item.item_status}</span>
             ${imageBlock}
             <div class="item-info">
@@ -20,7 +20,8 @@ function createMyItemCard(item) {
                 </div>
 
                 <div class="item-footer">
-                    <button class="edit-btn" data-id="${item.item_id}">Edit</button>
+                    <button class="edit-btn"   data-id="${item.item_id}">Edit</button>
+                    <button class="delete-btn" data-id="${item.item_id}">Delete</button>
                 </div>
             </div>
         </div>
@@ -60,8 +61,15 @@ export async function injectMyItems(containerId, categories = [], statuses = [])
     container.querySelectorAll('.edit-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const itemId = btn.dataset.id;
-            // Dispatch a custom event so editItem.js can respond
             document.dispatchEvent(new CustomEvent('open-edit-modal', { detail: { itemId } }));
+        });
+    });
+
+    // ── Wire up delete buttons ────────────────────────────────────────────────
+    container.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const itemId = btn.dataset.id;
+            document.dispatchEvent(new CustomEvent('open-delete-modal', { detail: { itemId } }));
         });
     });
 }

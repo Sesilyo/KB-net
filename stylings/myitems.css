@@ -4,7 +4,7 @@
 @import "./main.css";
 @import "./item-grid.css";
 @import "./sidebar.css";
-@import "./addItemPopup.css";
+@import "./additem_popup.css";
 
 /* ── Page Layout ── */
 #browse-layout {
@@ -59,7 +59,7 @@
     aspect-ratio: 1 / 1 !important;
     border-radius: 4px;
     margin: 0 !important;
-    background-color: #e8d5b7;
+    background-color: #fff;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 36px 36px;
@@ -118,8 +118,29 @@
 }
 
 /* ── Edit button ── */
+.delete-btn {
+    background: #090101;
+    color: #fff;
+    border: none !important;
+    padding: 0.3rem 1rem;
+    margin-left: 5px;
+    font-size: 0.8rem;
+    border-radius: 4px !important;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.delete-btn:hover {
+    background: #3d2a0e;
+    transform: none !important;
+    color: #fff;
+}
+
+
+/* ── Edit button ── */
 .edit-btn {
-    background: #111;
+    background: #3c2415;
     color: #fff;
     border: none !important;
     padding: 0.3rem 1rem;
@@ -135,6 +156,9 @@
     transform: none !important;
     color: #fff;
 }
+
+
+
 
 /* ── States ── */
 .loading-msg {
