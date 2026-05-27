@@ -36,7 +36,7 @@
     $types    = 's';
 
     // filter for item return
-    if(is_returned !== null && in_array($is_returned, ['0', '1'])) {
+    if($is_returned !== null && in_array($is_returned, ['0', '1'])) {
         $conditions[] = 't.is_returned = ?';
         $params[]     = (int)$is_returned;
         $types       .= 'i';
@@ -46,7 +46,7 @@
 
     // full SQL query
     $sql = "SELECT t.*,
-                    i.item_name, i.image_path, i.price_per_hr,
+                    i.item_name, i.image_path, i.price_pr_hr,
                     c.category_name,
                     u.first_name, u.last_name
             FROM transaction t
