@@ -1,0 +1,111 @@
+<!-- FILENAME: pages/profile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="../stylings/main.css">
+        <link rel="stylesheet" href="../stylings/profile.css">
+        
+        <title>KB-net | Profile</title>
+    </head>
+    <body>
+        <header>
+            <!-- Navbar injected by injectNavBar.js -->
+        </header>
+
+        <main id="profile-container">
+            <div id="profile-card">
+                <h1>User Profile</h1>
+
+                <!-- User Info Display Section -->
+                <div id="user-info-display" class="info-section">
+                    <div class="info-row">
+                        <label>Student ID:</label>
+                        <span id="display-student-id" class="info-value">-</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Name:</label>
+                        <span id="display-name" class="info-value">-</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Email:</label>
+                        <span id="display-email" class="info-value">-</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Lender ID:</label>
+                        <span id="display-lender-id" class="info-value">-</span>
+                    </div>
+                    <div class="info-row">
+                        <label>Borrower ID:</label>
+                        <span id="display-borrower-id" class="info-value">-</span>
+                    </div>
+                </div>
+
+                <!-- Edit Profile Section -->
+                <div id="edit-profile-section" class="info-section" style="display: none;">
+                    <h2>Edit Profile</h2>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="input-student-id">Student ID:</label>
+                            <input 
+                                type="text" 
+                                id="input-student-id" 
+                                name="student_id" 
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-first-name">First Name:</label>
+                            <input 
+                                type="text" 
+                                id="input-first-name" 
+                                name="first_name" 
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-last-name">Last Name:</label>
+                            <input 
+                                type="text" 
+                                id="input-last-name" 
+                                name="last_name" 
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="input-email">Email:</label>
+                            <input 
+                                type="email" 
+                                id="input-email" 
+                                name="email" 
+                                required
+                            />
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-save">Save Changes</button>
+                            <button type="button" id="btn-cancel-edit" class="btn-cancel">Cancel</button>
+                        </div>
+
+                        <div id="form-message" class="form-message"></div>
+                    </form>
+                </div>
+
+                <!-- Action Buttons -->
+                <div id="action-buttons" class="button-group">
+                    <button id="btn-edit-profile" class="btn-primary">Edit Profile</button>
+                    <button id="btn-logout" class="btn-danger">Logout</button>
+                </div>
+            </div>
+        </main>
+
+        <script type="module" src="../scripts/main.js"></script>
+        <script type="module" src="../scripts/components/profile.js"></script>
+    </body>
+</html>

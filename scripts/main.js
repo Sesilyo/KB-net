@@ -8,6 +8,8 @@ import { injectMyItems }  from "./components/injectMyItems.js";
 import { initAddItem }    from "./components/addItem.js";
 import { initEditItem }   from "./components/edittem.js";
 import { initDeleteItem } from "./components/deleteItem.js";
+import { initSearchBar }  from "./components/searchItems.js";
+import { injectTransactions } from "./components/injectTransactions.js";
 
 const PATH = window.location.pathname;
 
@@ -22,15 +24,24 @@ function getFilters() {
     return { categories, statuses };
 }
 
+// Get search term from URL parameters
+function getSearchParamFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('search') || '';
+}
+
 // ── Browse page ───────────────────────────────────────────────────────────────
 if (PATH.includes('browse.html')) {
-    injectItemGrid('#item-grid');
+    const searchFromURL = getSearchParamFromURL();
+    injectItemGrid('#item-grid', [], [], searchFromURL);
     injectFilters('#filter-container');
+    initSearchBar('#item-grid', injectItemGrid);
 
     document.addEventListener('change', (e) => {
         if (!e.target.matches('.filter-category, .filter-availability')) return;
-        const { categories, statuses, sort } = getFilters();
-        injectItemGrid('#item-grid', categories, statuses, sort);
+        const { categories, statuses } = getFilters();
+        const search = document.getElementById('search-bar')?.value || '';
+        injectItemGrid('#item-grid', categories, statuses, search);
     });
 }
 
@@ -61,4 +72,9 @@ if (PATH.includes('my_items.html')) {
         if (!itemId) { console.error('delete-btn is missing data-id attribute'); return; }
         document.dispatchEvent(new CustomEvent('open-delete-modal', { detail: { itemId } }));
     });
+}
+
+// ── Transactions page ──────────────────────────────────────────────────────────
+if (PATH.includes('transaction.html')) {
+    injectTransactions();
 }

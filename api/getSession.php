@@ -17,6 +17,7 @@ echo json_encode([
     'success'       => true,
     'borrower_id'   => $_SESSION['borrower_id'],
     'lender_id'     => $_SESSION['lender_id'],
+    'student_id'    => $_SESSION['student_id'],
     'first_name'    => $_SESSION['first_name'],
     'last_name'     => $_SESSION['last_name'],
 ]);

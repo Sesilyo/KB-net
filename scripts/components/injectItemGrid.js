@@ -28,14 +28,23 @@ function createItemCard(item) {
     `;
 }
 
-export async function injectItemGrid(containerId, categories = [], statuses = []) {
+export async function injectItemGrid(containerId, categories = [], statuses = [], search = '') {
     const params = new URLSearchParams();
     if (categories.length) params.append('categories', categories.join(','));
     if (statuses.length) params.append('statuses', statuses.join(','));
+    if (search) params.append('search', search);
 
-    const res = await fetch(`../api/getItems.php?${params}`);
+    // Use searchItems.php if search term is provided, otherwise use getItems.php
+    const endpoint = search ? '../api/searchItems.php' : '../api/getItems.php';
+    
+    const res = await fetch(`${endpoint}?${params}`);
     const items = await res.json();
 
     const container = document.querySelector(containerId);
-    container.innerHTML = items.map(createItemCard).join('');
+    
+    if (items.length === 0) {
+        container.innerHTML = '<div class="no-items-message">No items found.</div>';
+    } else {
+        container.innerHTML = items.map(createItemCard).join('');
+    }
 }
