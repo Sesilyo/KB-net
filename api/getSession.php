@@ -12,12 +12,15 @@ if (!isset($_SESSION['borrower_id'])) {
         exit;
     }
 
-// session is active, returns all relevant user data
+// ── Session is active ────────────────────────────────────────────────────────
 echo json_encode([
     'success'       => true,
     'borrower_id'   => $_SESSION['borrower_id'],
     'lender_id'     => $_SESSION['lender_id'],
+    'student_id'    => $_SESSION['student_id'],
     'first_name'    => $_SESSION['first_name'],
     'last_name'     => $_SESSION['last_name'],
+    'student_id'    => $_SESSION['student_id'],
+    'email'         => $_SESSION['email'] ?? '',
 ]);
 ?>

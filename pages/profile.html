@@ -1,0 +1,108 @@
+<!-- FILENAME: profile.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="../stylings/main.css">
+        <link rel="stylesheet" href="../stylings/profile.css">
+        
+        <title>KB-net | Profile</title>
+    </head>
+    <body>
+        <header>
+            <!-- Navbar injected by JS -->
+        </header>
+
+        <main id="profile-layout">
+            <div id="profile-content">
+                <!-- Profile Section -->
+                <section id="my-profile" class="profile-section active">
+                    <div class="section-header">
+                        <h2>My Profile</h2>
+                    </div>
+
+                    <div class="profile-container">
+                        <!-- Profile Picture -->
+                        <div class="profile-picture-container">
+                            <div class="profile-picture">
+                                <span>👤</span>
+                            </div>
+                            <button class="change-photo-btn">Change Photo</button>
+                        </div>
+
+                        <!-- Profile Information -->
+                        <div class="profile-info-grid">
+                            <!-- Username (Read-only) -->
+                            <div class="info-group">
+                                <label class="info-label">USERNAME</label>
+                                <div class="info-value" id="username-display">john_doe</div>
+                            </div>
+
+                            <!-- Full Name (Editable) -->
+                            <div class="info-group">
+                                <label class="info-label">FULL NAME</label>
+                                <div class="info-display">
+                                    <div class="info-value" id="fullname-display">John Doe</div>
+                                    <button class="edit-btn" id="edit-fullname-btn">Edit</button>
+                                </div>
+                                <div class="info-edit hidden" id="fullname-edit">
+                                    <input type="text" id="fullname-input" placeholder="Full Name" value="John Doe">
+                                </div>
+                            </div>
+
+                            <!-- Student ID (Editable) -->
+                            <div class="info-group">
+                                <label class="info-label">STUDENT ID</label>
+                                <div class="info-display">
+                                    <div class="info-value" id="studentid-display">2024-00123</div>
+                                    <button class="edit-btn" id="edit-studentid-btn">Edit</button>
+                                </div>
+                                <div class="info-edit hidden" id="studentid-edit">
+                                    <input type="text" id="studentid-input" placeholder="Student ID" value="2024-00123">
+                                </div>
+                            </div>
+
+                            <!-- Email Address (Editable) -->
+                            <div class="info-group">
+                                <label class="info-label">EMAIL ADDRESS</label>
+                                <div class="info-display">
+                                    <div class="info-value" id="email-display">john.doe@student.edu</div>
+                                    <button class="edit-btn" id="edit-email-btn">Edit</button>
+                                </div>
+                                <div class="info-edit hidden" id="email-edit">
+                                    <input type="email" id="email-input" placeholder="Email Address" value="john.doe@student.edu">
+                                </div>
+                            </div>
+
+                            <!-- Lender ID (Read-only) -->
+                            <div class="info-group">
+                                <label class="info-label">LENDER ID</label>
+                                <div class="info-value" id="lenderid-display">LDR-2024-0001</div>
+                            </div>
+
+                            <!-- Borrower ID (Read-only) -->
+                            <div class="info-group">
+                                <label class="info-label">BORROWER ID</label>
+                                <div class="info-value" id="borrowerid-display">BRW-2024-0001</div>
+                            </div>
+                        </div>
+
+                        <!-- Save/Cancel Buttons for edits -->
+                        <div id="edit-actions" class="edit-actions hidden">
+                            <button id="save-changes-btn" class="save-btn">Save Changes</button>
+                            <button id="cancel-changes-btn" class="cancel-btn">Cancel</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer></footer>
+
+        <script src="../scripts/main.js" type="module"></script>
+        <script src="../scripts/profile.js" type="module"></script>
+    </body>
+</html>

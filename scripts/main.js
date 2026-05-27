@@ -8,6 +8,7 @@ import { injectMyItems }  from "./components/injectMyItems.js";
 import { initAddItem }    from "./components/addItem.js";
 import { initEditItem }   from "./components/edittem.js";
 import { initDeleteItem } from "./components/deleteItem.js";
+import { initProfilePage } from "./profile.js";
 
 const PATH = window.location.pathname;
 
@@ -61,4 +62,9 @@ if (PATH.includes('my_items.html')) {
         if (!itemId) { console.error('delete-btn is missing data-id attribute'); return; }
         document.dispatchEvent(new CustomEvent('open-delete-modal', { detail: { itemId } }));
     });
+}
+
+// ── Profile page ──────────────────────────────────────────────────────────────
+if (PATH.includes('profile.html')) {
+    initProfilePage();
 }
